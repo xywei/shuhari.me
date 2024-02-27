@@ -4,16 +4,16 @@
         <description><![CDATA[Jacob Xiaoyu Wei]]></description>
         <link>https://shuhari.me</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 04 Sep 2023 12:54:23 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 27 Feb 2024 19:34:56 GMT</lastBuildDate>
         <atom:link href="https://shuhari.me/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[Markdown Examples]]></title>
-            <description><![CDATA[View examples of all possible Markdown options.]]></description>
-            <link>/posts/markdown</link>
-            <guid isPermaLink="true">/posts/markdown</guid>
-            <category><![CDATA[web development]]></category>
-            <dc:creator><![CDATA[You]]></dc:creator>
-            <pubDate>Fri, 19 Mar 2021 05:00:00 GMT</pubDate>
+            <title><![CDATA[JupyOps]]></title>
+            <description><![CDATA[Tips and tricks using JupyterLab/Notebook]]></description>
+            <link>/posts/jupyops</link>
+            <guid isPermaLink="true">/posts/jupyops</guid>
+            <category><![CDATA[jupyter]]></category>
+            <category><![CDATA[tips]]></category>
+            <pubDate>Tue, 27 Feb 2024 06:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
