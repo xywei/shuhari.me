@@ -26,6 +26,16 @@ What I settled on for now is using `pipx` to manage a separate virtual environme
   pipx inject jupyter jupyterlab-code-formatter black
   ```
 
+To keep the packages updated, run
+```
+pipx upgrade-all
+```
+
+If the system's Python is updated, you may also need to re-install packages under `pipx`
+```
+pipx reinstall-all
+```
+
 ## Manage kernel registry
 
 By default, JupyterLab only has access to the `ipython` kernel from the same virtual environment. To add another kernel, run the following command using the `ipython` you would like to register
