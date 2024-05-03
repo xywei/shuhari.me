@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Document() {
   const meta = {
@@ -25,6 +26,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <SpeedInsights />
       </body>
     </Html>
   )
