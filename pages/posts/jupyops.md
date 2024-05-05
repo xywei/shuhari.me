@@ -20,6 +20,8 @@ What I settled on for now is using `pipx` to manage a separate virtual environme
   ```
 - Inject other useful things into the `jupyter` venv
   ```
+  pipx inject jupyter ipywidgets
+  pipx inject jupyter jupyterlab_widgets
   pipx inject jupyter jupyterlab-vim
   pipx inject jupyter jupyterlab-git
   pipx inject jupyter jupyterlab-lsp 'python-lsp-server[all]'
@@ -46,6 +48,11 @@ By default, JupyterLab only has access to the `ipython` kernel from the same vir
 For example, this adds the systems's `ipython` kernel to the kernel selection list in the Notebook/Lab UI.
 ```
 /bin/ipython kernel install --user --name=system
+```
+
+To make `ipywidgets` work, it also needs to be installed in each kernel's environment, e.g., for `conda`,
+```
+conda install -c conda-forge ipykernel ipywidgets
 ```
 
 To see a list of registered kernels
