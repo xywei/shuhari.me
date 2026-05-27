@@ -12,7 +12,7 @@ export function Layout({ children, pathname }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader pathname={pathname} />
-      <main className="flex-1 px-4 py-12 sm:px-6">{children}</main>
+      <main className="flex-1 px-4 py-[clamp(2.5rem,6vw,4.5rem)] sm:px-6">{children}</main>
       <SiteFooter />
     </div>
   )

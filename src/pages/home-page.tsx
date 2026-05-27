@@ -2,7 +2,6 @@ import { ArrowUpRight } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 
 const chronology = [
   ['current', 'build software at Pathlit', 'https://pathlit.com/'],
@@ -66,7 +65,6 @@ const projects = [
     'https://github.com/xywei/volumential',
     'current',
   ],
-  ['uforth', 'A Forth interpreter written in Hoon.', 'https://github.com/xywei/uforth', 'past'],
   [
     'threshseg',
     'Iterative thresholding method for image segmentation, in Matlab.',
@@ -89,8 +87,8 @@ const projects = [
 
 export function HomePage() {
   return (
-    <div className="mx-auto max-w-5xl space-y-14">
-      <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+    <div className="mx-auto max-w-5xl space-y-[clamp(3.5rem,8vw,5.5rem)]">
+      <section className="grid gap-10 lg:min-h-[22rem] lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
         <div className="space-y-6">
           <Badge variant="outline" className="w-fit">
             */acc
@@ -121,17 +119,15 @@ export function HomePage() {
         </Card>
       </section>
 
-      <Separator />
-
-      <section className="grid gap-8 lg:grid-cols-[14rem_1fr]">
-        <div>
+      <section className="grid gap-6 border-t pt-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12 lg:pt-14">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="text-2xl font-semibold tracking-tight">Chrono</h2>
         </div>
-        <ol className="space-y-5">
+        <ol className="space-y-3">
           {chronology.map(([period, label, href]) => (
             <li key={`${period}-${label}`}>
               <a
-                className="group grid min-h-11 gap-2 rounded-md font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[8rem_1fr] sm:items-center"
+                className="group -mx-3 grid min-h-11 gap-2 rounded-md px-3 py-2 font-medium hover:bg-secondary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[8rem_1fr] sm:items-center"
                 href={href}
               >
                 <span className="font-mono text-sm text-muted-foreground">{period}</span>
@@ -145,20 +141,18 @@ export function HomePage() {
         </ol>
       </section>
 
-      <Separator />
-
-      <section className="grid gap-8 lg:grid-cols-[14rem_1fr]">
-        <div>
+      <section className="grid gap-6 border-t pt-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12 lg:pt-14">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="text-2xl font-semibold tracking-tight">Works</h2>
         </div>
-        <div className="space-y-10">
+        <div className="space-y-12">
           <div className="space-y-4">
             <h3 className="font-semibold">Journal Publications</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {publications.map(([year, title, venue, href]) => (
                 <li key={title}>
                   <a
-                    className="grid min-h-11 gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[4rem_1fr]"
+                    className="-mx-3 grid min-h-11 gap-2 rounded-md px-3 py-2 hover:bg-secondary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[4rem_1fr]"
                     href={href}
                   >
                     <span className="font-mono text-sm text-muted-foreground">{year}</span>
