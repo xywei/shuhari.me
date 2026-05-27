@@ -1,13 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
 const chronology = [
@@ -15,7 +9,7 @@ const chronology = [
   ['2023-2024', "master's student at UIUC - technology management", 'https://giesbusiness.illinois.edu/'],
   [
     '2018-2022',
-    'research at UIUC - scientific and high-performance computing',
+    'research at UIUC - scientific and high performance computing',
     'https://siebelschool.illinois.edu/',
   ],
   [
@@ -106,7 +100,7 @@ export function HomePage() {
               Jacob Xiaoyu Wei
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              Builder with roots in scientific computing, math, and high-performance numerical
+              Builder with roots in scientific computing, math, and high performance numerical
               methods.
             </p>
           </div>
@@ -118,7 +112,7 @@ export function HomePage() {
           </CardHeader>
           <CardContent>
             <a
-              className="inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline"
+              className="inline-flex min-h-11 items-center gap-1 rounded-md font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
               href="https://pathlit.com/"
             >
               pathlit.com <ArrowUpRight className="h-4 w-4" />
@@ -135,11 +129,16 @@ export function HomePage() {
         </div>
         <ol className="space-y-5">
           {chronology.map(([period, label, href]) => (
-            <li key={`${period}-${label}`} className="grid gap-2 sm:grid-cols-[8rem_1fr]">
-              <span className="font-mono text-sm text-muted-foreground">{period}</span>
-              <a className="group font-medium" href={href}>
-                {label}{' '}
-                <ArrowUpRight className="inline h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <li key={`${period}-${label}`}>
+              <a
+                className="group grid min-h-11 gap-2 rounded-md font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[8rem_1fr] sm:items-center"
+                href={href}
+              >
+                <span className="font-mono text-sm text-muted-foreground">{period}</span>
+                <span>
+                  {label}{' '}
+                  <ArrowUpRight className="inline h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </span>
               </a>
             </li>
           ))}
@@ -157,14 +156,19 @@ export function HomePage() {
             <h3 className="font-semibold">Journal Publications</h3>
             <ul className="space-y-4">
               {publications.map(([year, title, venue, href]) => (
-                <li key={title} className="grid gap-2 sm:grid-cols-[4rem_1fr]">
-                  <span className="font-mono text-sm text-muted-foreground">{year}</span>
-                  <div>
-                    <a className="font-medium text-primary underline-offset-4 hover:underline" href={href}>
-                      {title}
-                    </a>
-                    <p className="text-sm text-muted-foreground">{venue}</p>
-                  </div>
+                <li key={title}>
+                  <a
+                    className="grid min-h-11 gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[4rem_1fr]"
+                    href={href}
+                  >
+                    <span className="font-mono text-sm text-muted-foreground">{year}</span>
+                    <span>
+                      <span className="font-medium text-primary underline-offset-4 hover:underline">
+                        {title}
+                      </span>
+                      <span className="block text-sm text-muted-foreground">{venue}</span>
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -172,21 +176,21 @@ export function HomePage() {
 
           <div className="space-y-4">
             <h3 className="font-semibold">Software Projects</h3>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card">
               {projects.map(([name, description, href, status]) => (
-                <Card key={name}>
-                  <CardHeader>
-                    <div className="flex items-center justify-between gap-3">
-                      <CardTitle className="text-base">
-                        <a className="hover:underline" href={href}>
-                          {name}
-                        </a>
-                      </CardTitle>
-                      <Badge variant={status === 'current' ? 'default' : 'secondary'}>{status}</Badge>
-                    </div>
-                    <CardDescription>{description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                <a
+                  key={name}
+                  className="grid min-h-16 gap-3 border-b p-5 underline-offset-4 last:border-b-0 hover:bg-secondary/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:grid-cols-[10rem_1fr_auto] sm:items-start"
+                  href={href}
+                >
+                  <span className="font-semibold tracking-tight hover:underline">
+                    {name}
+                  </span>
+                  <span className="text-sm leading-6 text-muted-foreground">{description}</span>
+                  <Badge variant={status === 'current' ? 'default' : 'secondary'} className="w-fit">
+                    {status}
+                  </Badge>
+                </a>
               ))}
             </div>
           </div>

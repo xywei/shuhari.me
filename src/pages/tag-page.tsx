@@ -22,7 +22,10 @@ export function TagPage({ tag, posts }: TagPageProps) {
           <Card key={post.slug}>
             <CardHeader>
               <CardTitle>
-                <a className="hover:underline" href={`/posts/${post.slug}`}>
+                <a
+                  className="inline-flex min-h-11 items-center rounded-md hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+                  href={`/posts/${post.slug}`}
+                >
                   {post.title}
                 </a>
               </CardTitle>

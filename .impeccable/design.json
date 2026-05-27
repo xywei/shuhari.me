@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-27T01:13:26Z",
+  "title": "Design System: shuhari.me",
+  "extensions": {
+    "colorMeta": {
+      "ash-paper": {
+        "role": "neutral",
+        "displayName": "Ash Paper",
+        "canonical": "oklch(0.974 0.011 88)",
+        "tonalRamp": [
+          "oklch(0.15 0.011 88)",
+          "oklch(0.26 0.011 88)",
+          "oklch(0.38 0.011 88)",
+          "oklch(0.5 0.011 88)",
+          "oklch(0.62 0.011 88)",
+          "oklch(0.74 0.011 88)",
+          "oklch(0.86 0.011 88)",
+          "oklch(0.974 0.011 88)"
+        ]
+      },
+      "ink-blue-black": {
+        "role": "primary",
+        "displayName": "Ink Blue-Black",
+        "canonical": "oklch(0.19 0.035 255)",
+        "tonalRamp": [
+          "oklch(0.19 0.035 255)",
+          "oklch(0.28 0.04 255)",
+          "oklch(0.38 0.045 255)",
+          "oklch(0.5 0.04 255)",
+          "oklch(0.62 0.035 255)",
+          "oklch(0.74 0.03 255)",
+          "oklch(0.86 0.022 255)",
+          "oklch(0.96 0.01 255)"
+        ]
+      },
+      "annotation-amber": {
+        "role": "tertiary",
+        "displayName": "Annotation Amber",
+        "canonical": "oklch(0.74 0.13 75)",
+        "tonalRamp": [
+          "oklch(0.2 0.08 75)",
+          "oklch(0.3 0.1 75)",
+          "oklch(0.42 0.12 75)",
+          "oklch(0.55 0.13 75)",
+          "oklch(0.68 0.13 75)",
+          "oklch(0.74 0.13 75)",
+          "oklch(0.86 0.08 75)",
+          "oklch(0.95 0.035 75)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name only, one line, compact and confident."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long-form reading, project summaries, and technical notes."
+      },
+      "label": {
+        "displayName": "Label Mono",
+        "purpose": "Dates, year markers, code-adjacent metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-low",
+        "value": "0 1px 2px oklch(0.19 0.035 255 / 0.08)",
+        "purpose": "Barely visible ink-tinted lift for cards and ledger containers. Borders and tonal layers carry depth first."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-color",
+        "value": "color 150ms cubic-bezier(0.16, 1, 0.3, 1), background-color 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Quiet hover and focus feedback without layout motion."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Compact ink action with quiet hover and visible focus.",
+      "html": "<button class=\"ds-btn-primary\">Open note</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 8px 16px; border: 0; border-radius: 10px; background: oklch(0.24 0.06 255); color: oklch(0.974 0.011 88); font: 500 14px/1.2 InterVariable, Inter, system-ui, sans-serif; transition: color 150ms cubic-bezier(0.16, 1, 0.3, 1), background-color 150ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background: oklch(0.3 0.06 255); } .ds-btn-primary:focus-visible { outline: 2px solid oklch(0.24 0.06 255); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Badge",
+      "kind": "chip",
+      "refersTo": "badge-outline",
+      "description": "Small rounded metadata chip for tags and status labels.",
+      "html": "<span class=\"ds-badge-outline\">jupyter</span>",
+      "css": ".ds-badge-outline { display: inline-flex; align-items: center; border: 1px solid oklch(0.84 0.022 255); border-radius: 9999px; padding: 2px 10px; background: transparent; color: oklch(0.19 0.035 255); font: 600 12px/1.2 InterVariable, Inter, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Ledger Row List",
+      "kind": "custom",
+      "refersTo": "ledger-row-list",
+      "description": "Bordered low-shadow container for repeated project and contact rows.",
+      "html": "<div class=\"ds-ledger\"><a class=\"ds-ledger-row\" href=\"#\"><strong>volumential</strong><span>OpenCL-accelerated volume potential computation.</span></a><a class=\"ds-ledger-row\" href=\"#\"><strong>uforth</strong><span>A Forth interpreter written in Hoon.</span></a></div>",
+      "css": ".ds-ledger { overflow: hidden; max-width: 560px; border: 1px solid oklch(0.84 0.022 255); border-radius: 12px; background: oklch(0.992 0.006 88); color: oklch(0.19 0.035 255); box-shadow: 0 1px 2px oklch(0.19 0.035 255 / 0.08); } .ds-ledger-row { display: grid; gap: 8px; padding: 20px; border-bottom: 1px solid oklch(0.84 0.022 255); color: inherit; text-decoration: none; } .ds-ledger-row:last-child { border-bottom: 0; } .ds-ledger-row:hover { background: oklch(0.92 0.018 255 / 0.55); } .ds-ledger-row strong { font: 600 16px/1.1 InterVariable, Inter, system-ui, sans-serif; letter-spacing: -0.025em; } .ds-ledger-row span { color: oklch(0.43 0.035 255); font: 400 14px/1.5 InterVariable, Inter, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Top Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Compact text navigation with a quiet rounded active state.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-active\" href=\"#\">About</a><a class=\"ds-nav-link\" href=\"#\">Posts</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 4px; } .ds-nav-link { min-height: 44px; border-radius: 10px; padding: 8px 12px; color: oklch(0.43 0.035 255); text-decoration: none; font: 500 14px/1.2 InterVariable, Inter, system-ui, sans-serif; transition: color 150ms cubic-bezier(0.16, 1, 0.3, 1), background-color 150ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-link:hover, .ds-nav-link.ds-active { background: oklch(0.92 0.018 255); color: oklch(0.19 0.035 255); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Workbench Ledger",
+    "overview": "This visual system should feel like a carefully kept workbench log: precise, useful, compact, and quietly personal. It is a brand surface, but it should not behave like a campaign page. The design gives proof room to breathe: projects, publications, posts, and contact links should be inspectable without theatrical framing.",
+    "keyCharacteristics": [
+      "Compact public identity with enough rhythm for scanning.",
+      "Long-form and math-heavy reading comfort over decoration.",
+      "Tactile, quiet components: bordered, useful, minimally lifted.",
+      "Personal details are small, specific, and intentional.",
+      "Durable surfaces that age like reference material."
+    ],
+    "rules": [
+      {
+        "name": "The Annotation Rule",
+        "body": "Amber is for rare annotations, selections, and signals. It must not flood the page.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Rule",
+        "body": "Links and primary actions should feel like ink, not neon. Avoid saturated blues that read as generic web chrome.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Costume Mono Rule",
+        "body": "Monospace is for dates, code, and metadata. Do not use it as a blanket technical costume.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Ledger Rule",
+        "body": "Surfaces rest flat. If depth is needed, use border and tonal contrast first, shadow second.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead with proof: publications, projects, posts, and contact links should remain inspectable.",
+      "Do use ash-paper neutrals, ink foregrounds, and amber as a rare annotation.",
+      "Do use ledger rows for compact repeated material before reaching for cards.",
+      "Do preserve math readability with wide enough measure, scroll-safe equations, and stable code blocks.",
+      "Do respect reduced motion. State changes should be subtle and nonessential."
+    ],
+    "donts": [
+      "Don't use SaaS polish: cream gradients, soft metric cards, startup section templates, or AI landing page sameness.",
+      "Don't create an academic CV dump: dense lists without hierarchy, rhythm, or point of view are prohibited.",
+      "Don't use designer portfolio theatrics: the work should not compete with decorative case-study styling.",
+      "Don't use terminal cosplay: fake prompts, all-mono pages, and hacker costume styling are forbidden.",
+      "Don't use gradient text, side-stripe accent borders, decorative glassmorphism, or the hero-metric template."
+    ]
+  }
+}

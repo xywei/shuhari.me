@@ -14,7 +14,7 @@ export function PostPage({ post }: PostPageProps) {
   return (
     <article className="article">
       <a
-        className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground no-underline hover:text-foreground"
+        className="mb-8 inline-flex min-h-11 items-center gap-1 rounded-md text-sm font-medium text-muted-foreground no-underline hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         href="/posts"
       >
         <ArrowLeft className="h-4 w-4" /> Posts
@@ -22,7 +22,11 @@ export function PostPage({ post }: PostPageProps) {
       <header className="mb-10 space-y-5">
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <a key={tag} href={`/tags/${encodeURIComponent(tag)}`}>
+            <a
+              key={tag}
+              className="inline-flex min-h-11 items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              href={`/tags/${encodeURIComponent(tag)}`}
+            >
               <Badge variant="outline">{tag}</Badge>
             </a>
           ))}
