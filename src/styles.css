@@ -1,0 +1,125 @@
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 44 55% 97%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --primary: 220 72% 20%;
+    --primary-foreground: 44 55% 97%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215 16% 37%;
+    --accent: 39 78% 60%;
+    --accent-foreground: 222 47% 11%;
+    --border: 214 32% 84%;
+    --input: 214 32% 84%;
+    --ring: 220 72% 20%;
+    --radius: 0.75rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --background: 222 47% 7%;
+      --foreground: 210 40% 96%;
+      --card: 222 47% 10%;
+      --card-foreground: 210 40% 96%;
+      --primary: 210 40% 96%;
+      --primary-foreground: 222 47% 11%;
+      --secondary: 217 33% 17%;
+      --secondary-foreground: 210 40% 96%;
+      --muted: 217 33% 17%;
+      --muted-foreground: 215 20% 70%;
+      --accent: 39 78% 60%;
+      --accent-foreground: 222 47% 11%;
+      --border: 217 33% 22%;
+      --input: 217 33% 22%;
+      --ring: 210 40% 96%;
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth bg-background;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-feature-settings: 'case' 1, 'cpsp' 1, 'dlig' 1, 'cv01' 1, 'cv02' 1,
+      'cv03' 1, 'cv04' 1;
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+}
+
+@layer components {
+  .article {
+    @apply mx-auto max-w-3xl text-base leading-8 text-foreground;
+  }
+
+  .article h2 {
+    @apply mt-14 scroll-m-20 border-b pb-3 text-2xl font-semibold tracking-tight;
+  }
+
+  .article h3 {
+    @apply mt-10 scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  .article p {
+    @apply mt-5;
+  }
+
+  .article ul,
+  .article ol {
+    @apply my-5 ml-6 space-y-2;
+  }
+
+  .article ul {
+    @apply list-disc;
+  }
+
+  .article ol {
+    @apply list-decimal;
+  }
+
+  .article a {
+    @apply font-medium text-primary underline underline-offset-4;
+  }
+
+  .article code {
+    @apply rounded-md bg-muted px-1.5 py-0.5 font-mono text-sm;
+  }
+
+  .article pre {
+    @apply my-6 overflow-x-auto rounded-xl border bg-card p-4 text-sm leading-6;
+  }
+
+  .article pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .article blockquote {
+    @apply my-6 border-l-4 border-accent pl-4 text-muted-foreground;
+  }
+
+  .article hr {
+    @apply my-10;
+  }
+
+  .math-display {
+    @apply my-6 overflow-x-auto rounded-xl border bg-card p-4;
+  }
+}

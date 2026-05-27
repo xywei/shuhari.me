@@ -9,9 +9,11 @@
 # testing
 /coverage
 
-# next.js
+# framework output
 /.next/
 /out/
+/dist/
+/.vite/
 
 # production
 /build
