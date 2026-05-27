@@ -94,10 +94,10 @@ export function HomePage() {
             */acc
           </Badge>
           <div className="space-y-4">
-            <h1 className="max-w-3xl whitespace-nowrap text-[clamp(2rem,10vw,3.75rem)] font-bold tracking-tight">
+            <h1 className="type-display max-w-3xl whitespace-nowrap">
               Jacob Xiaoyu Wei
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            <p className="type-lede">
               Builder with roots in scientific computing, math, and high performance numerical
               methods.
             </p>
@@ -105,7 +105,7 @@ export function HomePage() {
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Current</CardTitle>
+            <CardTitle className="type-subsection-title">Current</CardTitle>
             <CardDescription>Building software at Pathlit.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -121,7 +121,7 @@ export function HomePage() {
 
       <section className="grid gap-6 border-t pt-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12 lg:pt-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <h2 className="text-2xl font-semibold tracking-tight">Chrono</h2>
+          <h2 className="type-section-title">Chrono</h2>
         </div>
         <ol className="space-y-3">
           {chronology.map(([period, label, href]) => (
@@ -130,7 +130,7 @@ export function HomePage() {
                 className="group -mx-3 grid min-h-11 gap-2 rounded-md px-3 py-2 font-medium hover:bg-secondary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[8rem_1fr] sm:items-center"
                 href={href}
               >
-                <span className="font-mono text-sm text-muted-foreground">{period}</span>
+                <span className="type-metadata">{period}</span>
                 <span>
                   {label}{' '}
                   <ArrowUpRight className="inline h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -143,11 +143,11 @@ export function HomePage() {
 
       <section className="grid gap-6 border-t pt-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12 lg:pt-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <h2 className="text-2xl font-semibold tracking-tight">Works</h2>
+          <h2 className="type-section-title">Works</h2>
         </div>
         <div className="space-y-12">
           <div className="space-y-4">
-            <h3 className="font-semibold">Journal Publications</h3>
+            <h3 className="type-subsection-title">Journal Publications</h3>
             <ul className="space-y-3">
               {publications.map(([year, title, venue, href]) => (
                 <li key={title}>
@@ -155,7 +155,7 @@ export function HomePage() {
                     className="-mx-3 grid min-h-11 gap-2 rounded-md px-3 py-2 hover:bg-secondary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[4rem_1fr]"
                     href={href}
                   >
-                    <span className="font-mono text-sm text-muted-foreground">{year}</span>
+                    <span className="type-metadata">{year}</span>
                     <span>
                       <span className="font-medium text-primary underline-offset-4 hover:underline">
                         {title}
@@ -169,7 +169,7 @@ export function HomePage() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold">Software Projects</h3>
+            <h3 className="type-subsection-title">Software Projects</h3>
             <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card">
               {projects.map(([name, description, href, status]) => (
                 <a
@@ -177,7 +177,7 @@ export function HomePage() {
                   className="grid min-h-16 gap-3 border-b p-5 underline-offset-4 last:border-b-0 hover:bg-secondary/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:grid-cols-[10rem_1fr_auto] sm:items-start"
                   href={href}
                 >
-                  <span className="font-semibold tracking-tight hover:underline">
+                  <span className="type-ledger-title hover:underline">
                     {name}
                   </span>
                   <span className="text-sm leading-6 text-muted-foreground">{description}</span>

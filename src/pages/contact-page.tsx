@@ -35,8 +35,8 @@ export function ContactPage() {
   return (
     <section className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12">
       <div className="space-y-3 lg:sticky lg:top-28 lg:self-start">
-        <h1 className="text-4xl font-bold tracking-tight">Contact</h1>
-        <p className="max-w-sm text-muted-foreground">Places where I am reachable or occasionally active.</p>
+        <h1 className="type-page-title">Contact</h1>
+        <p className="type-lede max-w-sm">Places where I am reachable or occasionally active.</p>
       </div>
 
       <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card">
@@ -46,7 +46,7 @@ export function ContactPage() {
             className="grid min-h-16 gap-2 border-b p-5 underline-offset-4 last:border-b-0 hover:bg-secondary/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:grid-cols-[10rem_1fr] sm:items-center"
             href={href}
           >
-            <span className="flex items-center gap-2 font-semibold tracking-tight">
+            <span className="type-ledger-title flex items-center gap-2">
               <Icon className="h-5 w-5" aria-hidden="true" />
               {label}
             </span>

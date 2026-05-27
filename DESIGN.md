@@ -15,25 +15,25 @@ colors:
   night-border: "oklch(0.29 0.03 255)"
 typography:
   display:
-    fontFamily: "InterVariable, Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2rem, 10vw, 3.75rem)"
+    fontFamily: "Commissioner Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 9.5vw, 4rem)"
     fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "-0.025em"
+    lineHeight: 0.95
+    letterSpacing: "-0.055em"
   headline:
-    fontFamily: "InterVariable, Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "2.25rem"
+    fontFamily: "Commissioner Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.25rem, 5vw, 3rem)"
     fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.025em"
+    lineHeight: 1.05
+    letterSpacing: "-0.045em"
   title:
-    fontFamily: "InterVariable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Commissioner Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.5rem"
     fontWeight: 600
-    lineHeight: 1.25
-    letterSpacing: "-0.025em"
+    lineHeight: 1.12
+    letterSpacing: "-0.035em"
   body:
-    fontFamily: "InterVariable, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Commissioner Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.75
@@ -129,17 +129,17 @@ The palette is ash paper and ink: warm paper, sober blue-black text, quiet blue-
 
 ## 3. Typography
 
-**Display Font:** InterVariable, Inter, ui-sans-serif, system-ui, sans-serif  
-**Body Font:** InterVariable, Inter, ui-sans-serif, system-ui, sans-serif  
+**Display Font:** Commissioner Variable, ui-sans-serif, system-ui, sans-serif  
+**Body Font:** Commissioner Variable, ui-sans-serif, system-ui, sans-serif  
 **Label/Mono Font:** ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
 
-**Character:** The type is single-family, compact, and controlled. It relies on scale, weight, and spacing rather than ornamental font choices.
+**Character:** The type is single-family, compact, and controlled. Commissioner gives the page a sharper workbench-instrument voice without slipping into monospace costume. It relies on scale, weight, spacing, and tight letterfit rather than ornament.
 
 ### Hierarchy
-- **Display** (700, `clamp(2rem, 10vw, 3.75rem)`, 1): Hero name only. It stays on one line.
-- **Headline** (700, `2.25rem`, 1.1): Page titles and major standalone headings.
-- **Title** (600, `1.5rem`, 1.25): Section headings and article subheads.
-- **Body** (400, `1rem`, 1.75): Long-form text, post bodies, project summaries. Cap readable article width at roughly 65 to 75 characters.
+- **Display** (700, `clamp(2rem, 9.5vw, 4rem)`, 0.95): Hero name only. It stays on one line.
+- **Headline** (700, `clamp(2.25rem, 5vw, 3rem)`, 1.05): Page titles and major standalone headings.
+- **Title** (600, `1.5rem`, 1.12): Section headings and article subheads.
+- **Body** (400, `1rem`, 1.75): Long-form text, post bodies, project summaries. Cap readable article width at roughly 65 to 70 characters.
 - **Label** (400, `0.875rem`, 1.25): Dates, year labels, compact metadata, and code-adjacent labels.
 
 ### Named Rules

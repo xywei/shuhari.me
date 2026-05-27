@@ -21,14 +21,14 @@ export function PostPage({ post }: PostPageProps) {
       </a>
       <header className="mb-12 grid gap-6 border-b pb-8 sm:grid-cols-[8rem_minmax(0,1fr)]">
         <div className="space-y-3">
-          <time className="block font-mono text-sm text-muted-foreground" dateTime={post.date}>
+          <time className="type-metadata block" dateTime={post.date}>
             {formatDate(post.date)}
           </time>
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <a
                 key={tag}
-                className="inline-flex min-h-11 items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 href={`/tags/${encodeURIComponent(tag)}`}
               >
                 <Badge variant="outline">{tag}</Badge>
@@ -37,8 +37,8 @@ export function PostPage({ post }: PostPageProps) {
           </div>
         </div>
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{post.title}</h1>
-          <p className="text-lg leading-8 text-muted-foreground">{post.description}</p>
+          <h1 className="type-article-title">{post.title}</h1>
+          <p className="type-lede">{post.description}</p>
         </div>
       </header>
       <Component />

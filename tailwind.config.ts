@@ -42,8 +42,7 @@ export default {
       },
       fontFamily: {
         sans: [
-          'InterVariable',
-          'Inter',
+          'Commissioner Variable',
           'ui-sans-serif',
           'system-ui',
           '-apple-system',
