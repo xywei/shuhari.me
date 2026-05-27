@@ -28,6 +28,12 @@ const chronology = [
 
 const publications = [
   [
+    '2026',
+    'modepy: Basis Functions, Interpolation, and Quadrature (not just) for Finite Elements',
+    'Journal of Open Source Software',
+    'https://doi.org/10.21105/joss.09294',
+  ],
+  [
     '2024',
     'Exact domain truncation for the Morse-Ingard equations',
     'Computers & Mathematics with Applications',
@@ -66,7 +72,7 @@ const projects = [
     'https://github.com/xywei/volumential',
     'current',
   ],
-  ['uforth', 'A Forth interpreter written in Hoon.', 'https://github.com/xywei/uforth', 'current'],
+  ['uforth', 'A Forth interpreter written in Hoon.', 'https://github.com/xywei/uforth', 'past'],
   [
     'threshseg',
     'Iterative thresholding method for image segmentation, in Matlab.',
@@ -96,12 +102,12 @@ export function HomePage() {
             */acc
           </Badge>
           <div className="space-y-4">
-            <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
+            <h1 className="max-w-3xl whitespace-nowrap text-[clamp(2rem,10vw,3.75rem)] font-bold tracking-tight">
               Jacob Xiaoyu Wei
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              Software engineer with roots in scientific computing, math, and high-performance
-              numerical methods.
+              Builder with roots in scientific computing, math, and high-performance numerical
+              methods.
             </p>
           </div>
         </div>

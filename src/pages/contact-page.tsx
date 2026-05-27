@@ -4,13 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const contacts = [
   ['GitHub', '@xywei', 'https://github.com/xywei'],
-  ['Warpcast', '@shuhari', 'https://warpcast.com/shuhari'],
-  ['Urbit', '~libryl-palryl', null],
-  [
-    'Nostr',
-    'npub1xxxxxfwzcks0ufzzweg9p6sm9cpf4lf830g8k2d2d364wd9cn5ns020mp9',
-    'https://snort.social/p/npub1xxxxxfwzcks0ufzzweg9p6sm9cpf4lf830g8k2d2d364wd9cn5ns020mp9',
-  ],
+  ['X', '@shuhari_me', 'https://x.com/shuhari_me'],
+  ['LinkedIn', 'xywei', 'https://www.linkedin.com/in/xywei/'],
 ] as const
 
 export function ContactPage() {
