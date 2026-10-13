@@ -175,6 +175,32 @@ With a medium price, the noise goes, but the thin antenna and the small dots sta
 With a high price, the antenna and the dots go too, because their boundary costs more than they save.
 There is no single right value. It depends on how small the smallest real feature is.
 
+## A link to today's AI
+
+Look at one round again.
+It has two steps: a blur, then a choice made pixel by pixel.
+
+The blur is a **convolution**, a linear operation that mixes each pixel with its neighbors.
+The choice is a simple **nonlinear** step: each pixel keeps the lower of two scores.
+A layer in a convolutional neural network has the same shape.
+It applies a convolution, then a pixel-by-pixel nonlinearity such as ReLU, which keeps positive values and sets negative ones to zero.
+
+So seven rounds of this method look a lot like a seven-layer network.
+The difference is where the numbers come from.
+Here, math fixes every number: the blur is a Gaussian, and λ sets the weight.
+In a neural network, training on data picks the numbers.
+Researchers use this link on purpose. They turn an iterative method into a network and train its numbers. This is called [algorithm unrolling](https://arxiv.org/abs/1912.10557).
+
+The **diffusion models** that generate images today use the same family of ideas, in a different way.
+During training, they add noise to images, step by step, and learn to undo each step.
+Adding noise spreads the collection of all images the way heat spreads, by the same heat equation as our blur.
+Our method spreads one mask. A diffusion model spreads a whole probability distribution, and a trained network runs it backward.
+That network is itself a deep stack of linear layers and nonlinear steps.
+
+Some researchers make the link even closer and use blur in place of noise.
+Examples are [inverse heat dissipation](https://arxiv.org/abs/2206.13397) and [cold diffusion](https://arxiv.org/abs/2208.09392).
+The blur-then-decide idea from 1990s mathematics is still at work, now with learned numbers.
+
 ## Try it yourself
 
 This demo runs the same method in your browser.
