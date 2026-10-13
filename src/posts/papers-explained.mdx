@@ -1,0 +1,132 @@
+export const meta = {
+  slug: 'papers-explained',
+  title: 'After 722 papers in one day, a case for understanding',
+  date: '2026-10-13',
+  description:
+    'OpenAI released 722 math papers in one day, and mathematicians called for a boycott. I think AI should help us understand math instead, so I am starting a series that explains research in plain language.',
+  tags: ['papers'],
+  series: 'papers-explained',
+  seriesPart: 0,
+  social: {
+    headline: '722 math papers in one day. Who will understand them?',
+    subhead: 'Not a boycott. A series that explains research in plain language, with help from AI.',
+    art: 'src/posts/papers-explained/share-art.png',
+  },
+  aiDisclosure:
+    'Claude, an AI assistant, drafted this introduction from my plan for the series. I edited it and checked every claim about the papers.',
+}
+
+## Why this series
+
+On October 6, 2026, OpenAI put [722 math manuscripts](https://retractionwatch.com/2026/10/08/openai-withdraws-preprints-722-manuscripts-unsolved-math-problems/) on GitHub in one day.
+A month before, it had announced that an AI system had solved the Navier–Stokes problem, one of the seven Millennium Prize Problems.
+By OpenAI's own count, about half of the new results were not yet checked.
+The next day, a sign error made it withdraw three of them.
+
+Mathematicians did not take it quietly.
+"Mathematicians did not ask for this work to be done," wrote the Association for Human Mathematics.
+"Releasing over 700 files at once is not a demonstration of scholarship, but a demonstration of power."
+The group urged mathematicians "to discontinue their work with OpenAI" and "to return to a vision of science that centers human understanding."
+Terence Tao, a Fields Medalist and one of the most respected mathematicians alive, posted [the full statement](https://terrytao.wordpress.com/2026/10/07/ahm-statement-on-openais-october-6-release-of-mathematical-documents/) on his blog.
+
+That week is why this series exists.
+
+I understand the anger.
+No person can read 722 papers in a day.
+A proof that nobody checks or understands adds little to mathematics.
+I share the goal in that statement: science should center human understanding.
+I do not share the plan to walk away from AI.
+
+Tao had made a similar point a few months earlier, in July 2026, in a lecture at the International Congress of Mathematicians called [Mathematics in the age of AI](https://arxiv.org/abs/2608.16753).
+His point, roughly: AI tools are getting good at producing proofs, but a proof that no one understands is not finished.
+As machines take on more of the work, mathematicians should put more effort into explanation, so that results are actually understood.
+
+I agree, and it made me look at my own field honestly.
+We mathematicians were bad at this long before AI arrived.
+Ask a mathematician friend whether they understand the work of a colleague in the next field over.
+Often the honest answer is "not really".
+For everyone outside mathematics, the gap is far wider.
+
+My own papers are a good example.
+From 2014 to 2022 I did research in math and scientific computing as my job, and that work ended up as a handful of journal papers.
+I still do research today, as a hobby.
+Very few people will ever read those papers.
+They are written for a small group of experts, and they skip every step that those experts already know.
+For anyone else, the interesting idea in each paper hides behind pages of notation.
+
+I think most of those ideas are simple at heart, and many are fun.
+A computer can find the outline of a shape by blurring it.
+A laser can make a gas hum, and a tuning fork can listen for it.
+You can simulate an infinite space on a finite computer, with no error from the cut.
+
+So here is my answer to that week.
+Do not boycott AI. Point it at understanding instead of output.
+Used that way, AI can help close the gap between what is known and what is understood.
+I think the path forward can be much brighter than the angry week suggests.
+This series is my small experiment in doing that.
+It tells the story of each paper, one at a time, in plain language.
+
+## Who it is for
+
+I write for a curious reader who has taken calculus and a little linear algebra.
+Think of a second-year undergrad in science or engineering.
+You do not need to know any physics beyond high school, or any numerical methods.
+
+If you are an expert, you can still enjoy the series.
+Each post links to the paper and the code, so you can check the details.
+
+## What to expect
+
+Each post explains one paper and follows the same plan:
+
+1. **A hook:** something you have seen, such as a photo or a drop of oil.
+2. **The question:** what we wanted to compute, in one sentence.
+3. **Why it's hard:** what goes wrong with the obvious approach.
+4. **The key idea:** one idea, with one picture.
+5. **Behind the scenes:** what we tried first and what surprised us.
+6. **Go further:** the paper, the code and related posts.
+
+A post takes about ten minutes to read.
+Formulas appear only after a picture, and each one comes with a sentence that says what it means.
+Heavier math goes into "For the curious" boxes. You can skip them, and the post still makes sense.
+Where it is cheap and fun, a post includes a small demo that runs in your browser.
+
+The first post explains [how to find the outline of a shape by blurring it](/posts/image-segmentation).
+Next, I will go through my other papers, one at a time.
+They cover water in tiny channels, oil and vinegar in a jar, lasers that make a gas hum, and the math inside large simulations.
+
+That is a starting point, not a fixed plan or a limit.
+I start with my own work because I know it best.
+Later, I may explain other people's work that I find interesting.
+That work may not even be a paper.
+One day, research may stop using papers as its main way to share new results, and this series can follow it there.
+
+New posts appear every few weeks. You can follow them with the [RSS feed](/feed.xml) or on the [series page](/series/papers-explained).
+
+## How it is made
+
+I write this series with help from AI assistants.
+Today I use Claude. Later I may add other AI tools, or change tools as they improve.
+
+The assistant reads the public version of each paper, usually on arXiv, and drafts the post.
+It also writes the code for the figures and the demos.
+The figures are new: the code reruns each method on made-up test data, so nothing is copied from a journal.
+
+My part is to check the science, fix what the draft gets wrong, and add the story that only I can tell.
+Every post ends with an "AI use disclosure" that says which tools helped with that post and exactly who did what.
+Tao's lecture asks for this kind of open disclosure too.
+
+Without this help, these posts would stay on my "some day" list.
+With it, I can turn years of research into something people may actually read.
+
+## Why you might care
+
+The methods in these papers are not just for experts.
+They sit inside tools that you use or will use: photo editors, gas sensors and engineering simulations.
+
+The ideas also travel well.
+"Measure a length with a blur" and "solve on the boundary, not the whole room" are tricks you can use in other problems.
+And each post shows how a research question goes from a vague wish to an algorithm with a proof.
+That path is the same in most of science and engineering, and it is rarely shown in plain language.
+
+If a post is unclear, or if it makes you curious about something, I would like to [hear about it](/contact).

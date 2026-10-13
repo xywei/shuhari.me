@@ -1,5 +1,5 @@
 import { formatDate } from '@/lib/date'
-import type { Post } from '@/lib/posts'
+import { getSeriesPartLabel, type Post } from '@/lib/posts'
 import type { Series } from '@/lib/series'
 
 type SeriesPageProps = {
@@ -13,7 +13,7 @@ export function SeriesPage({ series, posts }: SeriesPageProps) {
       <div className="space-y-3 lg:sticky lg:top-24 lg:self-start">
         <p className="type-eyebrow">Series</p>
         <p className="type-metadata">
-          {posts.length} {posts.length === 1 ? 'part' : 'parts'} so far.
+          {posts.length} {posts.length === 1 ? 'post' : 'posts'} so far.
         </p>
       </div>
 
@@ -29,7 +29,7 @@ export function SeriesPage({ series, posts }: SeriesPageProps) {
                 className="grid min-h-16 gap-2 p-5 hover:bg-secondary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:grid-cols-[4rem_minmax(0,1fr)] sm:p-6"
                 href={`/posts/${post.slug}`}
               >
-                <span className="type-metadata">Part {post.seriesPart}</span>
+                <span className="type-metadata">{getSeriesPartLabel(post.seriesPart!)}</span>
                 <span className="space-y-1">
                   <span className="type-ledger-title block hover:underline">{post.title}</span>
                   <span className="block text-sm text-muted-foreground">{post.description}</span>

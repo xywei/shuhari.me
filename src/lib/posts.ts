@@ -12,7 +12,7 @@ export type PostMeta = {
   tags: string[]
   draft?: boolean
   // Slug of the series this post belongs to (see src/lib/series.ts) and its
-  // position in that series, starting at 1.
+  // position in that series. Part 0 is the series introduction.
   series?: string
   seriesPart?: number
   // URL of the paper this post explains. It must match the link in the
@@ -21,6 +21,14 @@ export type PostMeta = {
   // How AI tools were used to write this post. Required for posts dated on or
   // after aiDisclosureRequiredFrom.
   aiDisclosure?: string
+  // Optional text and art for the social preview card (Open Graph image).
+  // headline replaces the title on the card, subhead replaces the
+  // description, and art is a square PNG, as a path from the repository root.
+  social?: {
+    headline: string
+    subhead?: string
+    art?: string
+  }
 }
 
 export type Post = PostMeta & {
@@ -62,7 +70,7 @@ function validateMeta(path: string, meta: PostMeta) {
       throw new Error(`Post ${path} names unknown series "${meta.series}"`)
     }
 
-    if (!Number.isInteger(meta.seriesPart) || meta.seriesPart! < 1) {
+    if (!Number.isInteger(meta.seriesPart) || meta.seriesPart! < 0) {
       throw new Error(`Post ${path} is in a series but has no valid seriesPart`)
     }
   }
@@ -86,6 +94,10 @@ export function getPostsInSeries(series: string) {
   return posts
     .filter((post) => post.series === series)
     .sort((a, b) => a.seriesPart! - b.seriesPart!)
+}
+
+export function getSeriesPartLabel(part: number) {
+  return part === 0 ? 'Intro' : `Part ${part}`
 }
 
 export function getPostForPaper(paper: string) {

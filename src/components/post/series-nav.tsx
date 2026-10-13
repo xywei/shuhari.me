@@ -22,7 +22,7 @@ export function SeriesNav({ post }: SeriesNavProps) {
   return (
     <nav aria-label={`${series.title} series`} className="post-series">
       <p className="type-metadata">
-        Part {post.seriesPart} of{' '}
+        {post.seriesPart === 0 ? 'Introduction to' : `Part ${post.seriesPart} of`}{' '}
         <a className="ink-link" href={`/series/${series.slug}`}>
           {series.title}
         </a>
