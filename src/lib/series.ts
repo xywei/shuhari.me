@@ -9,7 +9,7 @@ export const series: Series[] = [
     slug: 'papers-explained',
     title: 'Papers, explained',
     description:
-      'My past research papers, explained in plain language for anyone who has taken calculus.',
+      'Research explained in plain language for anyone who has taken calculus, starting with my own papers.',
   },
 ]
 
