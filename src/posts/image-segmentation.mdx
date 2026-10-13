@@ -1,0 +1,206 @@
+import { SegmentationDemo } from './image-segmentation/demo'
+import noisyNaiveResult from './image-segmentation/noisy-naive-result.png'
+import iterations from './image-segmentation/iterations.png'
+import lambdaFigure from './image-segmentation/lambda.png'
+
+export const meta = {
+  slug: 'image-segmentation',
+  title: 'Finding the outline by blurring and voting',
+  date: '2026-10-13',
+  description:
+    'How a computer can split a noisy image into regions with one simple trick: blur the mask, then let every pixel vote.',
+  tags: ['papers', 'image-processing'],
+  series: 'papers-explained',
+  seriesPart: 1,
+  paper: 'https://doi.org/10.1016/j.jcp.2017.08.020',
+  aiDisclosure:
+    'Claude, an AI assistant, drafted this post from the public arXiv version of the paper. It also wrote the code for the figures and the demo, which run the method on a made-up test image. I checked the science against the paper and edited the text.',
+}
+
+## The hook
+
+Portrait mode on your phone blurs the background behind your face.
+To do that, the phone must decide which pixels are "you" and which are "background".
+This task has a name: **image segmentation**.
+
+Today, most photo apps use neural networks for this.
+This post is about an older and much simpler idea.
+It needs no training data, it fits in about 30 lines of code, and it comes with a proof that it works.
+
+It is also the first paper in this series.
+
+## The question
+
+Take a grayscale image. Each pixel has a brightness between 0 (black) and 1 (white).
+We want to split the pixels into two groups, "inside" and "outside", so that:
+
+1. each group is close to one brightness, and
+2. the boundary between the groups is short.
+
+The second rule is what makes the result look clean.
+Without it, every noisy pixel could make its own tiny island.
+
+Mathematicians write the two rules as one score, called an **energy**:
+
+$$
+E = \sum_{\text{inside}} \bigl(f(x) - c_{\text{in}}\bigr)^2 + \sum_{\text{outside}} \bigl(f(x) - c_{\text{out}}\bigr)^2 + \lambda \cdot \text{boundary length}
+$$
+
+Here $f(x)$ is the brightness of pixel $x$.
+The numbers $c_{\text{in}}$ and $c_{\text{out}}$ are the average brightness inside and outside.
+The first two sums measure how badly each pixel fits its group.
+The last term charges a price $\lambda$ for each unit of boundary.
+The best split is the one with the lowest energy.
+
+This score is the **Chan–Vese model**, a special case of the Mumford–Shah model from 1989.
+Our paper did not invent the score. It found a fast, simple way to make it small.
+
+## Why it's hard
+
+The obvious first try ignores the boundary.
+Call a pixel "inside" if it is brighter than 0.5, and "outside" if not.
+
+<Figure
+  src={noisyNaiveResult}
+  alt="Three panels. Left: a noisy gray image of a house, a sun and an antenna. Middle: a black and white mask full of white specks. Right: a clean black and white mask of the same shapes."
+  caption="Left: a test image with heavy noise. Middle: a plain brightness threshold. Right: the method in this post."
+/>
+
+The middle panel shows the problem.
+Noise pushes many dark pixels above 0.5, and many bright pixels below it.
+In this test image, 3,881 of 36,864 pixels (about 11%) end up on the wrong side.
+
+To fix this, a pixel must look at its neighbors.
+That is exactly what the boundary-length term does.
+But boundary length is awkward to work with.
+It belongs to the whole shape, not to any one pixel.
+If you flip one pixel, the boundary changes in a complicated way.
+
+Earlier methods follow the curve directly, or they solve a large optimization problem.
+They work, but they are complex to build and can be slow.
+
+## The key idea
+
+The trick is to measure boundary length with a **blur**.
+
+Describe the inside group as a mask $u$: 1 for inside pixels, 0 for outside pixels.
+Now blur the mask with a Gaussian blur, the same blur that photo editors use.
+
+Far from the boundary, nothing changes.
+A pixel deep inside sees only 1s around it, so it stays 1.
+Near the boundary, the blur leaks across.
+Inside pixels drop a bit below 1, and outside pixels rise a bit above 0.
+
+The total amount of leak is proportional to the length of the boundary.
+A long, wiggly boundary leaks a lot. A short, smooth one leaks little.
+So "boundary length" turns into "how much the blurred mask leaks", and a blur is easy to compute.
+
+<Curious title="For the curious: why the leak measures length">
+Let $G_{\delta t}$ be the Gaussian blur with width $\sqrt{2\,\delta t}$.
+The paper uses this approximation, which holds when the blur is small:
+
+$$
+\text{boundary length} \approx \sqrt{\frac{\pi}{\delta t}} \int u \,\bigl(G_{\delta t} * (1 - u)\bigr)\, dx
+$$
+
+In words: take the inside pixels, and add up how much "outside" the blur pushes onto them.
+
+You can check the constant on a straight edge.
+In one dimension, let $u$ be 1 for $x > 0$ and 0 for $x < 0$.
+The blurred outside mask at $x > 0$ is $1 - \Phi(x/\sigma)$, where $\Phi$ is the normal distribution function and $\sigma = \sqrt{2\,\delta t}$.
+Its integral over $x > 0$ is $\sigma / \sqrt{2\pi} = \sqrt{\delta t / \pi}$.
+Multiply by $\sqrt{\pi / \delta t}$ and you get exactly 1: one unit of boundary per unit of edge.
+</Curious>
+
+With this trick, the method runs in rounds. Each round has four steps:
+
+1. Compute the average brightness inside, $c_{\text{in}}$, and outside, $c_{\text{out}}$.
+2. Blur the mask.
+3. Give every pixel two scores, one for each side.
+4. Move every pixel to the side with the lower score.
+
+The two scores are:
+
+$$
+\text{score}_{\text{in}} = \bigl(f - c_{\text{in}}\bigr)^2 + \kappa\,\bigl(1 - G * u\bigr),
+\qquad
+\text{score}_{\text{out}} = \bigl(f - c_{\text{out}}\bigr)^2 + \kappa\,\bigl(G * u\bigr)
+$$
+
+The first part of each score asks: does my brightness match this side?
+The second part asks: do my neighbors belong to this side?
+The number $\kappa = 2\lambda\sqrt{\pi}/\sqrt{\delta t}$ sets how much the neighbors count.
+
+So every pixel votes, using its own color and the opinion of its neighborhood.
+A lonely bright speck in a dark area has almost no inside neighbors.
+Its blurred mask value is close to 0, so its inside score is high, and it moves outside.
+
+<Figure
+  src={iterations}
+  alt="Four black and white masks. The first is full of specks. The second has far fewer. The third and fourth are clean shapes of a house, a sun and an antenna."
+  caption="The regions at the start (a plain threshold), after round 1, after round 2, and at the end."
+/>
+
+On the test image, round 1 cuts the wrong pixels from 3,881 to 426.
+Round 2 brings them to 187.
+After 7 rounds, no pixel switches sides any more, and the method stops.
+
+Two facts make this method good, not just simple.
+
+**It always settles.** The paper proves that the energy never goes up from one round to the next, for any blur width.
+So the method cannot cycle forever.
+In the paper's tests, it stopped after 7 to 20 rounds.
+
+**It is fast.** The only expensive step is the blur.
+A fast Fourier transform does it in about $N \log N$ steps for $N$ pixels.
+For a four-region test, the round count stayed at 7 or 8 from 128×128 up to 512×512 pixels.
+The largest case took 0.67 seconds in MATLAB on a laptop.
+
+The same idea works for more than two regions.
+Each pixel gets one score per region and joins the region with the lowest score.
+It also works for color images: the brightness difference becomes a color difference.
+
+## Choosing the boundary price
+
+The price $\lambda$ decides what counts as noise and what counts as detail.
+
+<Figure
+  src={lambdaFigure}
+  alt="Three black and white masks. Left: shapes with many white specks. Middle: clean shapes with the antenna and small dots kept. Right: smooth shapes with the antenna and dots gone."
+  caption="Left to right: a low, a medium and a high boundary price λ."
+/>
+
+With a low price, short boundaries are cheap, so noise survives as specks.
+With a medium price, the noise goes, but the thin antenna and the small dots stay.
+With a high price, the antenna and the dots go too, because their boundary costs more than they save.
+There is no single right value. It depends on how small the smallest real feature is.
+
+## Try it yourself
+
+This demo runs the same method in your browser.
+Press **One round** a few times and watch the specks disappear.
+Then change λ and run it again.
+
+<Figure caption="Each round blurs the mask, scores every pixel and lets it vote.">
+  <SegmentationDemo />
+</Figure>
+
+## Behind the scenes
+
+I wrote this paper with Dong Wang, Haohan Li and Xiaoping Wang at the Hong Kong University of Science and Technology.
+We posted it on arXiv in August 2016, and it appeared in the Journal of Computational Physics in 2017.
+
+{/* TODO(Jacob): add your own story here, such as how the project started, what you tried first and what surprised you. */}
+
+The idea of "blur, then threshold" is older than our paper.
+Merriman, Bence and Osher used it in the early 1990s to move curves by their curvature.
+Esedoğlu and Otto later showed how to use the blur to measure boundary length between many regions.
+Our paper brought that idea to image segmentation with the Chan–Vese score.
+
+## Go further
+
+- The paper on arXiv, free to read: [An efficient iterative thresholding method for image segmentation](https://arxiv.org/abs/1608.01431).
+- The journal version: [Journal of Computational Physics, 2017](https://doi.org/10.1016/j.jcp.2017.08.020).
+- MATLAB code for the method: [threshseg](https://github.com/xywei/threshseg).
+- The classic blur-and-threshold scheme in C++: [MBOX](https://github.com/xywei/MBOX).
+- The code for the figures in this post: [make_figures.py](https://github.com/xywei/shuhari.me/blob/main/src/posts/image-segmentation/make_figures.py).
