@@ -1,7 +1,11 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { formatDate } from '@/lib/date'
+import { posts } from '@/lib/posts'
+
+const recentPostCount = 3
 
 const chronology = [
   ['current', 'build software at Pathlit', 'https://pathlit.com/'],
@@ -190,6 +194,41 @@ export function HomePage() {
           </div>
         </div>
       </section>
+      {posts.length > 0 && (
+        <section className="grid gap-6 border-t pt-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12 lg:pt-14">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <h2 className="type-section-title">Writing</h2>
+          </div>
+          <div className="space-y-4">
+            <ul className="space-y-3">
+              {posts.slice(0, recentPostCount).map((post) => (
+                <li key={post.slug}>
+                  <a
+                    className="-mx-3 grid min-h-11 gap-2 rounded-md px-3 py-2 hover:bg-secondary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-[8rem_1fr]"
+                    href={`/posts/${post.slug}`}
+                  >
+                    <time className="type-metadata" dateTime={post.date}>
+                      {formatDate(post.date)}
+                    </time>
+                    <span>
+                      <span className="font-medium text-primary underline-offset-4 hover:underline">
+                        {post.title}
+                      </span>
+                      <span className="block text-sm text-muted-foreground">{post.description}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              className="inline-flex min-h-11 items-center gap-1 rounded-md font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              href="/posts"
+            >
+              All posts <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+      )}
     </div>
   )
 }
