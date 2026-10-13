@@ -18,6 +18,11 @@ export const meta = {
   series: 'papers-explained',
   seriesPart: 1,
   paper: 'https://doi.org/10.1016/j.jcp.2017.08.020',
+  social: {
+    headline: 'Blur it, then let every pixel vote.',
+    subhead: 'Not the best way to segment an image. The clearest one.',
+    art: 'src/posts/image-segmentation/share-art.png',
+  },
   aiDisclosure: 'Claude drafted the outline and first draft from the paper and my notes. I checked every technical claim and wrote the behind-the-scenes section myself.',
 }
 ```
@@ -25,6 +30,7 @@ export const meta = {
 - `draft: true` keeps a post out of the build. Remove it to publish.
 - `series` and `seriesPart` add the post to a series (defined in `src/lib/series.ts`). The post gets previous/next links, and the series gets a page at `/series/<slug>`. Part 0 is the series introduction.
 - `paper` must match the link in the homepage publications list exactly. The homepage then shows a "Plain-language explainer" link under that paper, and the post shows a "Read the paper" link.
+- `social` is optional. It sets the preview card that X, LinkedIn and other sites show when someone shares the post. `headline` and `subhead` replace the title and description on the card, so they can be shorter and bolder. `art` is a square PNG (630×630 or larger) shown on the right of the card, as a path from the repository root. Make it with a script next to the post, such as `make_figures.py`. Without `social`, the card shows the title and description. The build writes the card to `dist/og/posts/<slug>.png`.
 - `aiDisclosure` is shown as an "AI use disclosure" section at the end of the post. Posts dated 2026-10-13 or later cannot be published without one.
 
 ## Building blocks

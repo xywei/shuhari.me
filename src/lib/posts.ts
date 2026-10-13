@@ -21,6 +21,14 @@ export type PostMeta = {
   // How AI tools were used to write this post. Required for posts dated on or
   // after aiDisclosureRequiredFrom.
   aiDisclosure?: string
+  // Optional text and art for the social preview card (Open Graph image).
+  // headline replaces the title on the card, subhead replaces the
+  // description, and art is a square PNG, as a path from the repository root.
+  social?: {
+    headline: string
+    subhead?: string
+    art?: string
+  }
 }
 
 export type Post = PostMeta & {

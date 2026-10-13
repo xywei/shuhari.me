@@ -27,13 +27,14 @@ function renderHead(pathname: string) {
   const canonicalPath = route.canonicalPath ?? route.path
   const canonical = `${site.url}${canonicalPath === '/' ? '' : canonicalPath}`
   const ogImage = `${site.url}${getOgCard(pathname).imagePath}`
+  const ogType = route.status === 200 && /^\/posts\/[^/]+$/.test(route.path) ? 'article' : 'website'
 
   return [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
     `<meta name="robots" content="follow, index" />`,
     `<link rel="canonical" href="${canonical}" />`,
-    `<meta property="og:type" content="website" />`,
+    `<meta property="og:type" content="${ogType}" />`,
     `<meta property="og:site_name" content="${escapeHtml(site.title)}" />`,
     `<meta property="og:title" content="${escapeHtml(title)}" />`,
     `<meta property="og:description" content="${escapeHtml(description)}" />`,

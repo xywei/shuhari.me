@@ -9,7 +9,7 @@ Runs the iterative thresholding method of Wang, Li, Wei and Wang
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 OUT = Path(__file__).parent
 N = 192
@@ -92,6 +92,19 @@ def save_row(panels, name):
     Image.fromarray((row * 255).astype(np.uint8), "RGBA").save(OUT / name, optimize=True)
 
 
+def save_share_art(noisy, result, name, size=630):
+    """Square art for social preview cards: the noisy input above the
+    diagonal, the result below it, split by an amber line."""
+    before = np.repeat(gray(noisy)[..., None], 3, axis=2)
+    after = mask_rgb(result)
+    y, x = np.mgrid[0:N, 0:N]
+    art = np.where((x > y)[..., None], before, after)
+    image = Image.fromarray((art * 255).astype(np.uint8), "RGB").resize((size, size), Image.NEAREST)
+    amber = (218, 158, 63)
+    ImageDraw.Draw(image).line([(0, 0), (size, size)], fill=amber, width=8)
+    image.save(OUT / name, optimize=True)
+
+
 def main():
     clean, f = test_image()
     sigma = 2.0
@@ -112,6 +125,10 @@ def main():
     lams = (0.03, 0.15, 0.4)
     results = [segment(f, naive, lam, sigma)[0][-1] for lam in lams]
     save_row([mask_rgb(u) for u in results], "lambda.png")
+
+    # Art for the social preview card (used by meta.social in the post).
+    # A higher lambda than the main run gives a cleaner picture at this size.
+    save_share_art(f, segment(f, naive, 0.3, sigma)[0][-1], "share-art.png")
 
     print("rounds:", len(masks) - 1)
     print("energy never increases:", all(b <= a + 1e-9 for a, b in zip(energies, energies[1:])))
