@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { formatDate } from '@/lib/date'
 import { getPostForPaper, posts } from '@/lib/posts'
+import { site } from '@/lib/site'
 
 const recentPostCount = 3
 
@@ -127,10 +128,7 @@ export function HomePage() {
         </Badge>
         <div className="space-y-5">
           <h1 className="type-display max-w-3xl whitespace-nowrap">Jacob Xiaoyu Wei</h1>
-          <p className="type-lede">
-            Builder with roots in scientific computing, math, and high performance numerical
-            methods.
-          </p>
+          <p className="type-lede">{site.tagline}</p>
           <p className="flex items-center gap-2.5 text-muted-foreground">
             <span className="annotation-dot" aria-hidden="true" />
             <span>
@@ -173,7 +171,7 @@ export function HomePage() {
       <Section title="Works">
         <div className="space-y-12">
           <div className="space-y-4">
-            <h3 className="type-eyebrow">Journal Publications</h3>
+            <h3 className="type-eyebrow">Publications</h3>
             <ul className="space-y-1">
               {publications.map(([year, title, venue, href]) => {
                 const explainer = getPostForPaper(href)

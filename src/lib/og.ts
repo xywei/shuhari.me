@@ -26,7 +26,7 @@ export function getOgCard(pathname: string): OgCard {
     return {
       imagePath,
       title: site.name,
-      description: 'Builder with roots in scientific computing, math, and high performance numerical methods.',
+      description: site.tagline,
       label: 'shuhari.me',
     }
   }

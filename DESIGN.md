@@ -149,7 +149,7 @@ The palette is ash paper and ink: warm paper, sober blue-black text, quiet blue-
 - **Title** (600, `1.5rem`, 1.12): Section headings and article subheads.
 - **Body** (400, `1rem`, 1.75): Long-form text, post bodies, project summaries. Cap readable article width at roughly 65 to 70 characters.
 - **Label** (400, `0.875rem`, 1.5, tabular numerals): Dates, year labels, and compact metadata. Every dated list uses the same 7rem label column so dates line up down the page.
-- **Eyebrow** (600, `0.75rem`, uppercase, 0.12em tracking): Subsection labels inside a section, such as Journal Publications.
+- **Eyebrow** (600, `0.75rem`, uppercase, 0.12em tracking): Subsection labels inside a section, such as Publications.
 
 ### Named Rules
 **The No Costume Mono Rule.** Monospace is for code only. Dates and metadata use Commissioner's tabular numerals, which keep columns aligned without the system mono fallback clashing with the body face.
