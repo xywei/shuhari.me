@@ -34,9 +34,9 @@ function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
 export function ContactPage() {
   return (
     <section className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12">
-      <div className="space-y-3 lg:sticky lg:top-28 lg:self-start">
+      <div className="space-y-3 lg:sticky lg:top-24 lg:self-start">
         <h1 className="type-page-title">Contact</h1>
-        <p className="type-lede max-w-sm">Places where I am reachable or occasionally active.</p>
+        <p className="type-lede max-w-sm text-base">Places where I am reachable or occasionally active.</p>
       </div>
 
       <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card">

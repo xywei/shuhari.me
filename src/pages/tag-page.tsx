@@ -9,8 +9,8 @@ type TagPageProps = {
 export function TagPage({ tag, posts }: TagPageProps) {
   return (
     <section className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12">
-      <div className="space-y-3 lg:sticky lg:top-28 lg:self-start">
-        <p className="type-metadata">tag</p>
+      <div className="space-y-3 lg:sticky lg:top-24 lg:self-start">
+        <p className="type-eyebrow">Tag</p>
         <p className="type-metadata">
           {posts.length} {posts.length === 1 ? 'post' : 'posts'} in this topic.
         </p>

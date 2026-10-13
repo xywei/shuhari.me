@@ -160,10 +160,29 @@
   }
 
   .type-metadata {
-    @apply font-mono text-sm text-muted-foreground;
-    line-height: 1.4;
+    @apply text-sm text-muted-foreground;
+    line-height: 1.5;
     letter-spacing: 0.01em;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .type-eyebrow {
+    @apply text-xs font-semibold uppercase text-muted-foreground;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+  }
+
+  .ink-link {
+    @apply font-medium text-primary underline decoration-muted-foreground/40 decoration-1 underline-offset-[0.22em] transition-colors;
+  }
+
+  .ink-link:hover,
+  a:hover .ink-link {
+    @apply decoration-current;
+  }
+
+  .annotation-dot {
+    @apply inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent;
   }
 
   .article {
@@ -172,7 +191,7 @@
   }
 
   .article h2 {
-    @apply mt-16 scroll-m-20 border-b pb-3 font-semibold;
+    @apply mt-16 scroll-m-24 border-b pb-3 font-semibold;
     font-size: 1.5rem;
     line-height: 1.15;
     letter-spacing: -0.035em;
@@ -202,8 +221,8 @@
     @apply list-decimal;
   }
 
-  .article a {
-    @apply font-medium text-primary underline underline-offset-4;
+  .article a:not([class]) {
+    @apply font-medium text-primary underline decoration-muted-foreground/40 underline-offset-[0.22em] transition-colors hover:decoration-current;
   }
 
   .article code {
@@ -220,6 +239,10 @@
 
   .article blockquote {
     @apply my-6 rounded-xl border bg-card p-4 text-muted-foreground;
+  }
+
+  .article li::marker {
+    @apply text-muted-foreground;
   }
 
   .article hr {
