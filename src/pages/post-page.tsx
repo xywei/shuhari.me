@@ -1,5 +1,7 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 
+import { mdxComponents } from '@/components/post/mdx-components'
+import { SeriesNav } from '@/components/post/series-nav'
 import { Badge } from '@/components/ui/badge'
 import { formatDate } from '@/lib/date'
 import type { Post } from '@/lib/posts'
@@ -39,9 +41,21 @@ export function PostPage({ post }: PostPageProps) {
         <div className="space-y-4">
           <h1 className="type-article-title">{post.title}</h1>
           <p className="type-lede">{post.description}</p>
+          {post.paper && (
+            <a className="ink-link inline-flex min-h-11 items-center gap-1" href={post.paper}>
+              Read the paper <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          )}
         </div>
       </header>
-      <Component />
+      <Component components={mdxComponents} />
+      {post.aiDisclosure && (
+        <section aria-labelledby="ai-use-disclosure" className="post-disclosure">
+          <h2 id="ai-use-disclosure">AI use disclosure</h2>
+          <p>{post.aiDisclosure}</p>
+        </section>
+      )}
+      <SeriesNav post={post} />
     </article>
   )
 }

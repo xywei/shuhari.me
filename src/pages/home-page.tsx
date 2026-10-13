@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { formatDate } from '@/lib/date'
-import { posts } from '@/lib/posts'
+import { getPostForPaper, posts } from '@/lib/posts'
 
 const recentPostCount = 3
 
@@ -175,17 +175,29 @@ export function HomePage() {
           <div className="space-y-4">
             <h3 className="type-eyebrow">Journal Publications</h3>
             <ul className="space-y-1">
-              {publications.map(([year, title, venue, href]) => (
-                <li key={title}>
-                  <a className={rowClass} href={href}>
-                    <span className="type-metadata sm:pt-px">{year}</span>
-                    <span>
-                      <span className={rowTitleClass}>{title}</span>
-                      <span className="mt-0.5 block text-sm text-muted-foreground">{venue}</span>
-                    </span>
-                  </a>
-                </li>
-              ))}
+              {publications.map(([year, title, venue, href]) => {
+                const explainer = getPostForPaper(href)
+
+                return (
+                  <li key={title}>
+                    <a className={rowClass} href={href}>
+                      <span className="type-metadata sm:pt-px">{year}</span>
+                      <span>
+                        <span className={rowTitleClass}>{title}</span>
+                        <span className="mt-0.5 block text-sm text-muted-foreground">{venue}</span>
+                      </span>
+                    </a>
+                    {explainer && (
+                      <a
+                        className="ink-link inline-flex min-h-11 items-center gap-1 text-sm sm:ml-32"
+                        href={`/posts/${explainer.slug}`}
+                      >
+                        Plain-language explainer <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    )}
+                  </li>
+                )
+              })}
             </ul>
           </div>
 

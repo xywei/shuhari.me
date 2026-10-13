@@ -5,9 +5,11 @@ import { HomePage } from '@/pages/home-page'
 import { NotFoundPage } from '@/pages/not-found-page'
 import { PostPage } from '@/pages/post-page'
 import { PostsIndexPage } from '@/pages/posts-index-page'
+import { SeriesPage } from '@/pages/series-page'
 import { TagPage } from '@/pages/tag-page'
 
-import { getPost, getPostsByTag, posts, tags } from './posts'
+import { getPost, getPostsByTag, getPostsInSeries, posts, tags } from './posts'
+import { series } from './series'
 import { site } from './site'
 
 export type RouteResult = {
@@ -25,6 +27,9 @@ export const staticRoutes = [
   ...fixedRoutes,
   ...posts.map((post) => `/posts/${post.slug}`),
   ...tags.map((tag) => `/tags/${encodeURIComponent(tag)}`),
+  ...series
+    .filter((candidate) => getPostsInSeries(candidate.slug).length > 0)
+    .map((candidate) => `/series/${candidate.slug}`),
   '/404',
 ]
 
@@ -98,6 +103,22 @@ export function getRoute(pathname: string): RouteResult {
         title: `Posts tagged ${tag}`,
         description: `Posts tagged ${tag} by Jacob Xiaoyu Wei.`,
         element: <TagPage tag={tag} posts={taggedPosts} />,
+      }
+    }
+  }
+
+  const seriesMatch = path.match(/^\/series\/([^/]+)$/)
+  if (seriesMatch) {
+    const match = series.find((candidate) => candidate.slug === decodeURIComponent(seriesMatch[1]))
+    const seriesPosts = match ? getPostsInSeries(match.slug) : []
+
+    if (match && seriesPosts.length > 0) {
+      return {
+        status: 200,
+        path,
+        title: match.title,
+        description: match.description,
+        element: <SeriesPage series={match} posts={seriesPosts} />,
       }
     }
   }
