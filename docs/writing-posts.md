@@ -23,7 +23,7 @@ export const meta = {
 ```
 
 - `draft: true` keeps a post out of the build. Remove it to publish.
-- `series` and `seriesPart` add the post to a series (defined in `src/lib/series.ts`). The post gets previous/next links, and the series gets a page at `/series/<slug>`.
+- `series` and `seriesPart` add the post to a series (defined in `src/lib/series.ts`). The post gets previous/next links, and the series gets a page at `/series/<slug>`. Part 0 is the series introduction.
 - `paper` must match the link in the homepage publications list exactly. The homepage then shows a "Plain-language explainer" link under that paper, and the post shows a "Read the paper" link.
 - `aiDisclosure` is shown as an "AI use disclosure" section at the end of the post. Posts dated 2026-10-13 or later cannot be published without one.
 

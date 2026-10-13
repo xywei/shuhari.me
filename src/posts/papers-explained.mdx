@@ -1,0 +1,95 @@
+export const meta = {
+  slug: 'papers-explained',
+  title: 'Papers, explained: why I am writing this series',
+  date: '2026-10-13',
+  description:
+    'A series of plain-language posts about my research papers: what to expect, who it is for, and how it is made.',
+  tags: ['papers'],
+  series: 'papers-explained',
+  seriesPart: 0,
+  aiDisclosure:
+    'Claude, an AI assistant, drafted this introduction from my plan for the series. I edited it and checked every claim about the papers.',
+}
+
+## Why this series
+
+From 2014 to 2022 I did research in math and scientific computing.
+That work ended up as a handful of journal papers.
+
+Very few people will ever read them.
+That is normal for research papers.
+They are written for a small group of experts, and they skip every step that those experts already know.
+For anyone else, the interesting idea in each paper hides behind pages of notation.
+
+I think most of those ideas are simple at heart, and many are fun.
+A computer can find the outline of a shape by blurring it.
+A laser can make a gas hum, and a tuning fork can listen for it.
+You can simulate an infinite space on a finite computer, with no error from the cut.
+
+This series tells those stories, one paper at a time, in plain language.
+
+## Who it is for
+
+I write for a curious reader who has taken calculus and a little linear algebra.
+Think of a second-year undergrad in science or engineering.
+You do not need to know any physics beyond high school, or any numerical methods.
+
+If you are an expert, you can still enjoy the series.
+Each post links to the paper and the code, so you can check the details.
+
+## What to expect
+
+Each post explains one paper and follows the same plan:
+
+1. **A hook:** something you have seen, such as a photo or a drop of oil.
+2. **The question:** what we wanted to compute, in one sentence.
+3. **Why it's hard:** what goes wrong with the obvious approach.
+4. **The key idea:** one idea, with one picture.
+5. **Behind the scenes:** what we tried first and what surprised us.
+6. **Go further:** the paper, the code and related posts.
+
+A post takes about ten minutes to read.
+Formulas appear only after a picture, and each one comes with a sentence that says what it means.
+Heavier math goes into "For the curious" boxes. You can skip them, and the post still makes sense.
+Where it is cheap and fun, a post includes a small demo that runs in your browser.
+
+Here is the plan for the series:
+
+- [Finding the outline by blurring and voting](/posts/image-segmentation): how to split a noisy image into regions.
+- Where does the wall really start for water in a tiny channel?
+- Oil and vinegar in a jar, and how the wall of the jar picks a side.
+- A blinking laser makes a gas hum, and a tuning fork listens to find trace gases.
+- Faking an infinite space around a sensor.
+- Calculus on a triangle: the building blocks inside many simulations.
+- Following a steep drop next to a wall, one digit at a time.
+
+Between those, three short "foundation" posts explain tools that several papers share.
+They cover integral equations, how computers do integrals, and the fast multipole method.
+
+New posts appear every few weeks. You can follow them with the [RSS feed](/feed.xml) or on the [series page](/series/papers-explained).
+
+## How it is made
+
+I write this series with help from an AI assistant, Claude.
+
+The assistant reads the public version of each paper, usually on arXiv, and drafts the post.
+It also writes the code for the figures and the demos.
+The figures are new: the code reruns each method on made-up test data, so nothing is copied from a journal.
+
+My part is to check the science, fix what the draft gets wrong, and add the story that only I can tell.
+Every post ends with an "AI use disclosure" that says exactly who did what.
+
+Without this help, these posts would stay on my "some day" list.
+With it, I can turn years of research into something people may actually read.
+
+## Why you might care
+
+The methods in these papers are not just for experts.
+They sit inside tools that you use or will use: photo editors, gas sensors and engineering simulations.
+
+The ideas also travel well.
+"Measure a length with a blur" and "solve on the boundary, not the whole room" are tricks you can use in other problems.
+And each post shows how a research question goes from a vague wish to an algorithm with a proof.
+That path is the same in most of science and engineering, and it is rarely shown in plain language.
+
+If a post is unclear, or if it makes you curious about something, I would like to [hear about it](/contact).
