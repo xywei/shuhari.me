@@ -1,0 +1,115 @@
+export const meta = {
+  slug: 'jupyops',
+  title: 'JupyOps',
+  date: '2024-02-27',
+  description: 'Tips and tricks using JupyterLab/Notebook.',
+  tags: ['jupyter', 'tips'],
+}
+
+## Install `jupyter` with `pipx`
+
+First, issues with other methods I have tried:
+
+- Using the system package manager: some extensions may not be actively maintained, for
+  example [python-jupyterlab-vim](https://aur.archlinux.org/packages/python-jupyterlab-vim).
+- Using a project virtual environment or conda environment: the setup has to be duplicated
+  in each environment.
+
+What I settled on for now is using `pipx` to manage a separate virtual
+environment for everything Jupyter. Here is how I do it.
+
+Install the metapackage that pulls in all Jupyter components:
+
+```
+pipx install jupyter --include-deps
+pipx ensurepath
+```
+
+Inject other useful packages into the `jupyter` environment:
+
+```
+pipx inject jupyter ipywidgets
+pipx inject jupyter jupyterlab_widgets
+pipx inject jupyter jupyterlab-vim
+pipx inject jupyter jupyterlab-git
+pipx inject jupyter jupyterlab-lsp 'python-lsp-server[all]'
+pipx inject jupyter jupyterlab-code-formatter black
+```
+
+To keep the packages updated, run:
+
+```
+pipx upgrade-all
+```
+
+If the system Python is updated, you may also need to reinstall packages under `pipx`:
+
+```
+pipx reinstall-all
+```
+
+## Manage kernel registry
+
+By default, JupyterLab only has access to the `ipython` kernel from the
+same virtual environment. To add another kernel, run the following command using the
+`ipython` you would like to register:
+
+```
+<your kernel path>/ipython kernel install --user --name=<your kernel name>
+```
+
+For example, this adds the system `ipython` kernel to the kernel selection
+list in the Notebook/Lab UI.
+
+```
+/bin/ipython kernel install --user --name=system
+```
+
+To make `ipywidgets` work, it also needs to be installed in each kernel
+environment. For conda, for example:
+
+```
+conda install -c conda-forge ipykernel ipywidgets
+```
+
+To see a list of registered kernels:
+
+```
+jupyter kernelspec list
+```
+
+To remove a registered kernel from the list:
+
+```
+jupyter kernelspec uninstall <unwanted kernel>
+```
+
+`uninstall` and `remove` are equivalent here.
+
+## Avoid Git repository bloating
+
+When notebooks are added to a Git repository, their output can be filtered out to avoid
+bloating the repository.
+
+1. Add a filter to the repo-wise Git config. Use `--global` to make it global.
+   We only need to define the `clean` command, which is used to convert the
+   contents of a worktree file upon check-in.
+
+   ```
+   git config filter.strip-notebook-output.clean \
+     'jupyter nbconvert --ClearOutputPreprocessor.enabled=True --to=notebook --stdin --stdout --log-level=ERROR'
+   ```
+
+2. Tell Git to apply this filter to `.ipynb` files.
+
+   ```
+   echo '*.ipynb filter=strip-notebook-output' >> .git/info/attributes
+   ```
+
+3. If the repo has existing unscrubbed notebooks, add them to be renormalized and then commit.
+
+   ```
+   git add --renormalize .
+   ```
+
+Note that the filter only cleans checked-in notebooks. The local worktree remains untouched.
