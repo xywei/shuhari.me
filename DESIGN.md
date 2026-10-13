@@ -38,10 +38,17 @@ typography:
     fontWeight: 400
     lineHeight: 1.75
   label:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    fontFamily: "Commissioner Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
-    lineHeight: 1.25
+    lineHeight: 1.5
+    fontVariantNumeric: "tabular-nums lining-nums"
+  eyebrow:
+    fontFamily: "Commissioner Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 600
+    letterSpacing: "0.12em"
+    textTransform: "uppercase"
 rounded:
   sm: "8px"
   md: "10px"
@@ -123,7 +130,7 @@ The palette is ash paper and ink: warm paper, sober blue-black text, quiet blue-
 - **Night Border**: Dark-mode rules and card outlines.
 
 ### Named Rules
-**The Annotation Rule.** Amber is for rare annotations, selections, and signals. It must not flood the page.
+**The Annotation Rule.** Amber is for rare annotations, selections, and signals. It must not flood the page. Its sanctioned uses are text selection, the active navigation underline, and the small annotation dot that marks what is current.
 
 **The Ink Rule.** Links and primary actions should feel like ink, not neon. Avoid saturated blues that read as generic web chrome.
 
@@ -131,7 +138,8 @@ The palette is ash paper and ink: warm paper, sober blue-black text, quiet blue-
 
 **Display Font:** Commissioner Variable, ui-sans-serif, system-ui, sans-serif  
 **Body Font:** Commissioner Variable, ui-sans-serif, system-ui, sans-serif  
-**Label/Mono Font:** ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
+**Label Font:** Commissioner Variable with tabular, lining numerals  
+**Code Font:** ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace
 
 **Character:** The type is single-family, compact, and controlled. Commissioner gives the page a sharper workbench-instrument voice without slipping into monospace costume. It relies on scale, weight, spacing, and tight letterfit rather than ornament.
 
@@ -140,10 +148,13 @@ The palette is ash paper and ink: warm paper, sober blue-black text, quiet blue-
 - **Headline** (700, `clamp(2.25rem, 5vw, 3rem)`, 1.05): Page titles and major standalone headings.
 - **Title** (600, `1.5rem`, 1.12): Section headings and article subheads.
 - **Body** (400, `1rem`, 1.75): Long-form text, post bodies, project summaries. Cap readable article width at roughly 65 to 70 characters.
-- **Label** (400, `0.875rem`, 1.25): Dates, year labels, compact metadata, and code-adjacent labels.
+- **Label** (400, `0.875rem`, 1.5, tabular numerals): Dates, year labels, and compact metadata. Every dated list uses the same 7rem label column so dates line up down the page.
+- **Eyebrow** (600, `0.75rem`, uppercase, 0.12em tracking): Subsection labels inside a section, such as Journal Publications.
 
 ### Named Rules
-**The No Costume Mono Rule.** Monospace is for dates, code, and metadata. Do not use it as a blanket technical costume.
+**The No Costume Mono Rule.** Monospace is for code only. Dates and metadata use Commissioner's tabular numerals, which keep columns aligned without the system mono fallback clashing with the body face.
+
+**The Typographer's Dash Rule.** Year ranges and label separators use an en dash (2018–2022, UIUC – research), never a hyphen.
 
 **The No Discretionary Ligature Rule.** Keep discretionary ligatures off. Letterforms must stay legible and unornamented.
 
@@ -189,7 +200,7 @@ Components should feel tactile and quiet: useful, bordered, and direct. Ledger r
 - **Error / Disabled:** Disabled controls should lower opacity only when the affordance remains clear.
 
 ### Navigation
-- **Style, typography, default/hover/active states, mobile treatment.** Sticky top navigation with compact 14px links, rounded active state, muted default color, and pale blue-gray active background. Keep it short and textual.
+- **Style, typography, default/hover/active states, mobile treatment.** Sticky top navigation on one row at every width, aligned to the same content edge as the page. Compact 14px links in muted ink; the active link turns full ink with a 2px amber underline. Keep it short and textual.
 
 ### Article Body
 Article pages use a centered 3xl measure, generous 1.75 line height, ruled h2 separators, bordered code blocks, and scroll-safe math displays. This is the strongest product-like part of the brand system and should not be sacrificed for visual novelty.

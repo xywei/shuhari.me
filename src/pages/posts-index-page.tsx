@@ -7,9 +7,9 @@ import { posts } from '@/lib/posts'
 export function PostsIndexPage() {
   return (
     <section className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-12">
-      <div className="space-y-3 lg:sticky lg:top-28 lg:self-start">
+      <div className="space-y-3 lg:sticky lg:top-24 lg:self-start">
         <h1 className="type-page-title">Posts</h1>
-        <p className="type-lede max-w-sm">Notes, recipes, and longer-form technical writing.</p>
+        <p className="type-lede max-w-sm text-base">Notes, recipes, and longer-form technical writing.</p>
       </div>
 
       <div className="overflow-hidden rounded-xl border bg-card text-card-foreground shadow-card">
@@ -40,10 +40,10 @@ export function PostsIndexPage() {
             <div className="mt-4 space-y-3">
               <p className="max-w-2xl text-muted-foreground">{post.description}</p>
               <a
-                className="inline-flex min-h-11 items-center gap-1 rounded-md font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+                className="ink-link inline-flex min-h-11 items-center gap-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
                 href={`/posts/${post.slug}`}
               >
-                Read more <ArrowRight className="h-4 w-4" />
+                Read more <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           </article>
