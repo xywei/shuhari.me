@@ -22,6 +22,12 @@ const chronology = [
 const publications = [
   [
     '2026',
+    'Quadrature by Matched Asymptotic Expansion (QBMAX): Accelerating Evaluation of Layer Potentials with Boundary Layers',
+    'arXiv preprint, submitted',
+    'https://arxiv.org/abs/2609.10857',
+  ],
+  [
+    '2026',
     'modepy: Basis Functions, Interpolation, and Quadrature (not just) for Finite Elements',
     'Journal of Open Source Software',
     'https://doi.org/10.21105/joss.09294',
