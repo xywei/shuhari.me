@@ -2,6 +2,8 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
+import { renderOgImage } from './og-image.mjs'
+
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(dirname, '..')
 const dist = path.join(root, 'dist')
@@ -16,6 +18,7 @@ for (const route of serverEntry.staticRoutes) {
     .replace('<!--app-html-->', appHtml)
 
   await writeRoute(route, html)
+  await writeOgImage(route)
 }
 
 await fs.writeFile(path.join(dist, 'feed.xml'), serverEntry.getFeedXml(), 'utf8')
@@ -27,6 +30,13 @@ await fs.writeFile(
 )
 
 await fs.rm(path.join(dist, 'server'), { recursive: true, force: true })
+
+async function writeOgImage(route) {
+  const card = serverEntry.getOgCard(route)
+  const file = path.join(dist, ...card.imagePath.slice(1).split('/'))
+  await fs.mkdir(path.dirname(file), { recursive: true })
+  await fs.writeFile(file, await renderOgImage(card, serverEntry.ogImageSize))
+}
 
 async function writeRoute(route, html) {
   if (route === '/') {

@@ -1,3 +1,5 @@
+import { inject } from '@vercel/analytics'
+import { injectSpeedInsights } from '@vercel/speed-insights'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 
 import { App } from './app'
@@ -14,3 +16,6 @@ if (root.children.length > 0) {
 } else {
   createRoot(root).render(<App />)
 }
+
+inject()
+injectSpeedInsights()
